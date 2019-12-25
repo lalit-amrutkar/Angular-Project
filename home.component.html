@@ -1,0 +1,82 @@
+<div class="container">
+  <h1 align="center">Student Registration </h1>
+  <div  class="btn-group btn-toolbar btn-lg btn-success">
+    <button (click)="chooseview($event)" value="StudentReg" class="btn-info" > Student Info </button>
+    <button (click)="chooseview($event)" value="CourseView" class="btn-warning"> Course Details </button>
+    <button (click)="chooseview($event)" value="FeesView" class="btn-danger"> Fees Details </button>
+    <button (click)="chooseview($event)" value="SummaryView" class="btn-dark"> Summary </button>
+  </div>
+  <br><br>
+  <div>
+    <button (click)="Previous()"  class="btn btn-success">Previous </button>
+    <button (click)="Next()" style="float:right" class="btn btn-success"> Next </button>
+  </div>
+  
+  
+  <br><br>
+  <div [ngSwitch]="selectedView">
+    <!-- Student Info -->
+      <div *ngSwitchCase="'StudentReg'" class="form-group">
+        <label>Student Name</label>
+        <input [(ngModel)]="studentname" type="text"  class="form-control" autofocus placeholder="Enter Name" required>
+        <label>Email ID </label>
+        <input [(ngModel)]="email"type="email" class="form-control" placeholder="Enter Email" required>
+        <label>Mobile</label>
+        <input [(ngModel)]="mobile" type="text" class="form-control" placeholder="9876543210" pattern="/+91[0-9]{10}/" required>
+      </div>
+    
+    
+  
+
+  <!--Course Details -->
+
+  <div *ngSwitchCase="'CourseView'" class="form-group">
+      <label for="">Course Name</label>
+      <input [(ngModel)]="coursename"type="text"  class="form-control"  aria-describedby="helpId">
+      <small id="helpId" class="text-muted">e.g.C C++ Java UI Angular</small><br>
+      <label for="">Trainer Name</label>
+      <input [(ngModel)]="trainername"type="text"  class="form-control" required>
+      <label for="">Course Duration</label>
+      <input type="text" [(ngModel)]="courseduration" class="form-control" required>
+
+      
+  </div>
+  
+
+   <!-- Fees Details -->
+
+  <div *ngSwitchCase="'FeesView'" class="form-group">
+    
+      <label>Total Fees</label>
+      <input [(ngModel)]="fees" type="text" class="form-control" required>
+      <label> Paid Fees </label>
+      <input [(ngModel)]="paidfees" type="text"  class="form-control" required><br>
+      <button (click)="balance()">Balance</button> <br><br>
+      <input type="text" value={{bal}} class="form-control">
+    
+      <br><br>
+      
+      
+    <input style="margin-left: 530px;" type="submit" value="Submit" class="btn-dark" (click)="ShowCart($event)">
+  </div>
+  <!--<div *ngSwitchCase="'SummaryView'" class="form-group">-->
+    <div *ngIf="summary">
+    <table class="table table-hover">
+    <tr>Student Name</tr><td> {{studentname}}</td>
+    <tr> Email ID </tr><td>{{email}}</td> 
+    <tr>Mobile No</tr><td>{{mobile}}</td>
+    <tr>Course Name </tr> <td>{{coursename}}</td> 
+    <tr>Trainer Name </tr> <td>{{trainername}}</td>
+    <tr>Course Duration </tr> <td>{{courseduration}}</td> 
+    <tr>Fees </tr> <td>{{fees}}</td>
+    <tr>Paid Fees</tr><td> {{paidfees}}</td> 
+    <tr> Balance Fee </tr> <td>{{bal}}</td>
+    </table> 
+    <!--</div>-->
+    <button (click)="Print()" class="btn btn-primary" style="margin-left: 550px;" > Print</button>
+     
+    </div>
+
+ 
+</div>
+</div>
